@@ -1,13 +1,17 @@
 # Solutions to BSidesJeddah-Part2 from Cyberdefenders.org
+## Contents
+1. [Question 1](#question-1)
+2. [Question 2](#question-2)
+10. [Question 10](#question-10)
 
-## <b> 1. What is the SHA256 hash value of the RAM image? </b>
+## <b> 1. What is the SHA256 hash value of the RAM image?</b> <a name = "question-1"> </a>
     sha256sum memory.mem
 <details>
     <summary> <b>Solution </b> </summary>
     5b3b1e1c92ddb1c128eca0fa8c917c16c275ad4c95b19915a288a745f9960f39
 </details>
 
-## <b> 2. What time was the RAM image acquired according to the suspect system?</b>
+## <b> 2. What time was the RAM image acquired according to the suspect system?</b> <a name = "question-2"> </a>
 For this question, I used volatility 3, rather than volatility 2. I used the below command to get the time:
 
     vol -f memory.mem windows.info
@@ -89,7 +93,7 @@ This reveals a process called "ramcapture64.exe" was run. Some cursory googling 
     Belkasoft
 </details>
 
-## <b> 10. What is the administrator user password? </b>
+## <b> 10. What is the administrator user password? </b> <a name = "question-10"> </a>
 Continuing with volatility 3, I used the following command to get the administrator user password:
 
     vol -f memory.mem windows.hashdump.Hashdump
