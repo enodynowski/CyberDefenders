@@ -2,6 +2,13 @@
 ## Contents
 1. [Question 1](#question-1)
 2. [Question 2](#question-2)
+3. [Question 3](#question-3)
+4. [Question 4](#question-4)
+5. [Question 5](#question-5)
+6. [Question 6](#question-6)
+7. [Question 7](#question-7)
+8. [Question 8](#question-8)
+9. [Question 9](#question-9)
 10. [Question 10](#question-10)
 
 ## <b> 1. What is the SHA256 hash value of the RAM image?</b> <a name = "question-1"> </a>
@@ -20,7 +27,7 @@ For this question, I used volatility 3, rather than volatility 2. I used the bel
     2021-08-06 16:13:23
 </details>
 
-## <b> 3. What volatility2 profile is the most appropriate for this machine? </b>
+## <b> 3. What volatility2 profile is the most appropriate for this machine? </b> <a name = "question-3"> </a>
 Back to volatility 2 for this question. I used the below command to get the profile. It takes a while so be patient:
 
     vol.py -f memory.mem imageinfo
@@ -29,7 +36,7 @@ Back to volatility 2 for this question. I used the below command to get the prof
     Win2016x64_14393
 </details>
 
-## <b> 4. What is the computer's name? </b>
+## <b> 4. What is the computer's name? </b> <a name = "question-4"> </a>
 There were multiple ways to do this. I examined the registry and used the following commands to get the computer's name:
 
     vol.py -f memory.mem --profile=Win2016x64_14393 hivelist
@@ -46,7 +53,7 @@ After finding the ComputerName hive key in the registry, I used the following co
     WIN-8QOTRH7EMHC
 </details>
 
-## <b> 5. What is the system IP address? </b>
+## <b> 5. What is the system IP address? </b> <a name = "question-5"> </a>
 Continuing to use volatility 2 here. I used the following command to get the system IP address:
 
     vol.py -f memory.mem --profile=Win2016x64_14393 netscan
@@ -55,7 +62,7 @@ Continuing to use volatility 2 here. I used the following command to get the sys
     192.168.144.131
 </details>
 
-## <b> 6. How many established network connections were at the time of acquisition? </b>
+## <b> 6. How many established network connections were at the time of acquisition? </b> <a name = "question-6"> </a>
 I used the following command to get the number of established network connections:
 
     vol.py -f memory.mem --profile=Win2016x64_14393 netscan | grep "ESTABLISHED" | wc -l 
@@ -64,7 +71,7 @@ I used the following command to get the number of established network connection
     12
 </details>
 
-## <b> 7. What is the PID of explorer.exe? </b>
+## <b> 7. What is the PID of explorer.exe? </b> <a name = "question-7"> </a>
 I used the following command to get the PID of explorer.exe:
 
     vol.py -f memory.mem --profile=Win2016x64_14393 pslist | grep "explorer.exe" | awk '{print $2}'
@@ -73,7 +80,7 @@ I used the following command to get the PID of explorer.exe:
     2676
 </details>
 
-## <b> 8. What is the title of the webpage the admin visited using IE? </b>
+## <b> 8. What is the title of the webpage the admin visited using IE? </b><a name = "question-8"> </a>
 I used the following command to get the title of the webpage the admin visited using IE:
 
     vol.py -f memory.mem --profile=Win2016x64_14393 iehistory
@@ -82,7 +89,7 @@ I used the following command to get the title of the webpage the admin visited u
     Google News
 </details>
 
-## <b>9. What company developed the program used for memory acquisition? </b>
+## <b>9. What company developed the program used for memory acquisition? </b> <a name = "question-9"> </a>
 Back to volatility 3 for this question. I used the windows.cmdline plugin to determine the programs ran from the command line at the time of acquisition:
 
     vol -f memory.mem windows.cmdline
